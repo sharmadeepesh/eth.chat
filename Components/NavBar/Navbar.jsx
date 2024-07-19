@@ -37,7 +37,7 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
     const [openModel, setOpenModel] = useState(false);
 
-    const {account, userName, connectWallet} = useContext(ChatAppContext);
+    const {account, userName, connectWallet, createAccount, error} = useContext(ChatAppContext);
 
     return (
         <div className={Style.NavBar}>
@@ -46,11 +46,12 @@ const NavBar = () => {
                     <Image src={images.logo} alt="logo" width={50} height={50}></Image>
                 </div>
                 <div className={Style.NavBar_box_right}>
+
                     
                     <div className={Style.NavBar_box_right_menu}>
                         {menuItems.map((el, i) => (
                             <div onClick={() => setActive(i+1)} key={i+1} className={`${Style.NavBar_box_right_menu_items} 
-                                ${active == i + 1 ? Style.active_btn : ""}}`}>
+                                ${active == i + 1 ? Style.active_btn : ""}`}>
                                     <Link className={Style.NavBar_box_right_menu_items_link} href={el.link}>
                                         {el.menu}
                                     </Link>
@@ -62,7 +63,7 @@ const NavBar = () => {
                         <div className={Style.mobile_menu}>
                         {menuItems.map((el, i) => (
                             <div onClick={() => setActive(i+1)} key={i+1} className={`${Style.mobile_menu_items} 
-                                ${active == i + 1 ? Style.active_btn : ""}}`}>
+                                ${active == i + 1 ? Style.active_btn : ""}`}>
                                     <Link className={Style.mobile_menu_items_link} href={el.link}>
                                         {el.menu}
                                     </Link>
@@ -70,9 +71,7 @@ const NavBar = () => {
                         ))}
 
                         <p className={Style.mobile_menu_btn}>
-                            <Image src="images.close" alt="close" width={50} height={50}>
-                                onClick={() => setOpen(false)}
-                            </Image>
+                            <Image src={images.close} alt="close" width={50} height={50} onClick={() => setOpen(false)} />
                         </p>
                     </div>
                     )}
@@ -102,8 +101,21 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
+            
+            { openModel && (
+                <div className={Style.modelBox}>
+                    <Model openModel={setOpenModel}
+                        title = "Welcome to"
+                        head="Eth.Chat"
+                        info="Random text hehe"
+                        smallInfo="Kindly select your name..."
+                        images = {images.hero}
+                        functionName = {createAccount} />
+                </div>
+            )}
+            {error == "" ? "" : <Error error={error} />}
         </div>
-    )
-}
+    );
+};
 
 export default NavBar
