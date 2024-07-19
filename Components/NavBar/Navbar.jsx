@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Image from "next/image";
- import Link from "next/link";
+import Link from "next/link";
 
 import Style from "./NavBar.module.css";
 import { ChatAppContext } from '@/Context/ChatAppContext'; 
@@ -102,15 +102,16 @@ const NavBar = () => {
                 </div>
             </div>
             
-            { openModel && (
+            { !openModel && (
                 <div className={Style.modelBox}>
-                    <Model openModel={setOpenModel}
+                    <Model openBox={setOpenModel}
                         title = "Welcome to"
                         head="Eth.Chat"
                         info="Random text hehe"
                         smallInfo="Kindly select your name..."
-                        images = {images.hero}
-                        functionName = {createAccount} />
+                        image = {images.hero}
+                        functionName = {createAccount}
+                        address = {account} />
                 </div>
             )}
             {error == "" ? "" : <Error error={error} />}
