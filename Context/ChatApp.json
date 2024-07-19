@@ -2,6 +2,7 @@
   "_format": "hh-sol-artifact-1",
   "contractName": "ChatApp",
   "sourceName": "contracts/ChatApp.sol",
+  
   "abi": [
     {
       "inputs": [
