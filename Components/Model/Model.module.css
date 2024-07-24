@@ -36,12 +36,58 @@
     cursor: pointer;
 }
 
+.Model_box_right_name_info input {
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #f18303;
+}
+
+.Model_box_right_name_btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.Model_box_right_name_btn button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #f18303;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    display: flex;
+    border-radius: .5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 35em) {
     .Model {
-        width: 90%;
+        width: 95%;
     }
 
     .Model_box {
         grid-template-columns: 1fr;
+    }
+
+    .Model_box_right h1 {
+        font-size: 1rem;
+        list-style-type: 1.2;
+    }
+
+    .Model_box_right h1 span {
+        font-size: 2.5rem;
+    }
+
+    .Model_box_right_name_btn {
+        display:grid;
+        grid-template-columns: 1fr;
+        z-index: 111111;
     }
 }

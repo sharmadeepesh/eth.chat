@@ -25,7 +25,7 @@ contract ChatApp {
         address accountAddress;
     }
 
-    AllUserStruct[] getAllUsers;
+    AllUserStruct[] getAllUsers; 
 
     mapping(address => user) userList;
     mapping(bytes32 => message[]) allMessages;

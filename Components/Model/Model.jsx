@@ -5,7 +5,7 @@ import Style from "./Model.module.css";
 import images from "../../assets";
 import { ChatAppContext } from '../../Context/ChatAppContext';
 import {Loader} from "../../Components/index";
-import ChatApp from '@/pages';
+import ChatApp from '../../pages';
 
 const Model = ( {openBox, title, head, info, smallInfo, image, functionName, address}) => {
     
@@ -27,7 +27,11 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                     <p>{info}</p>
                     <small>{smallInfo}</small>
 
-                    <div className={Style.Model_box_right_name}>
+                    {
+                        loading == true ? (
+                            <Loader/>
+                        ) : (
+                            <div className={Style.Model_box_right_name}>
                         <div className={Style.Model_box_right_name_info}>
                             <Image src={images.username} alt="user" width={30} height={30} />
                             <input type="text" placeholder="your name" onChange={(e) => setName(e.target.value)} />
@@ -54,6 +58,9 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                             </button>
                         </div>
                     </div>
+                        )
+                    }
+
                 </div>
             </div>
         </div>

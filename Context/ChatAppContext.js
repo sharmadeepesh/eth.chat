@@ -28,14 +28,22 @@ export const ChatAppProvider = ({children}) => {
             const connectAccount = await connectWallet();
             setAccount(connectAccount);
 
+            console.log("1");
+
             const userName = await contract.getUsername(connectAccount);
             setUserName(userName);
 
-            const friendList = await contract.getMyFriendList();
+            console.log("2");
+
+            const friendLists = await contract.getMyFriendList();
             setFriendLists(friendLists);
+
+            console.log("3");
 
             const userList = await contract.getAllAppUser();
             setUserLists(userList);
+
+            console.log("4");
 
         }
         catch (error) {
@@ -60,12 +68,13 @@ export const ChatAppProvider = ({children}) => {
 
     const createAccount = async({ name, accountAddress }) => {
         try {
-            if (name || accountAddress) return setError("Name and account cannot be empty.");
+            //if (name || accountAddress) return setError("Name and account cannot be empty.");
 
             const contract = await connectingWithContract();
             const getCreatedUser = await contract.createAccount(name);
             setLoading(true);
             await getCreatedUser.wait();
+            console.log(getCreatedUser);
             setLoading(false);
             window.location.reload();
         }

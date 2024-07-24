@@ -102,7 +102,7 @@ const NavBar = () => {
                 </div>
             </div>
             
-            { !openModel && (
+            { openModel && (
                 <div className={Style.modelBox}>
                     <Model openBox={setOpenModel}
                         title = "Welcome to"
