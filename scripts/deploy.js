@@ -7,7 +7,7 @@ async function main() {
     await chatApp.deployed();
 
     console.log(
-        `Contract address ${chatApp.address}`
+        `Contract address ${await chatApp.address}`
     );
 }
 

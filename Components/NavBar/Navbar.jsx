@@ -77,7 +77,7 @@ const NavBar = () => {
                     )}
 
                     <div className={Style.NavBar_box_right_connect}>
-                        { account =="" ? (
+                        { account == "" ? (
                             <button onClick={() => connectWallet()}>
                                 {""}
                                 <span>Connect Wallet</span>

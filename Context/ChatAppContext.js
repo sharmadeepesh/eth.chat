@@ -24,30 +24,28 @@ export const ChatAppProvider = ({children}) => {
     const fetchData = async() => {
         try {
             const contract = await connectingWithContract();
+            console.log(contract);
 
-            const connectAccount = await connectWallet();
+            const connectAccount = await checkIfWalletConnected();
+            if (connectAccount === "") {
+                connectAccount = await connectWallet();
+            }
+
             setAccount(connectAccount);
-
-            console.log("1");
+            console.log(connectAccount);
 
             const userName = await contract.getUsername(connectAccount);
             setUserName(userName);
 
-            console.log("2");
-
             const friendLists = await contract.getMyFriendList();
             setFriendLists(friendLists);
-
-            console.log("3");
-
+               
             const userList = await contract.getAllAppUser();
             setUserLists(userList);
 
-            console.log("4");
-
         }
         catch (error) {
-            setError("Please install and connect your wallet");
+            setError("Please install and connect your wallet: ", error);
         }
     };
 
@@ -74,7 +72,6 @@ export const ChatAppProvider = ({children}) => {
             const getCreatedUser = await contract.createAccount(name);
             setLoading(true);
             await getCreatedUser.wait();
-            console.log(getCreatedUser);
             setLoading(false);
             window.location.reload();
         }
@@ -83,12 +80,12 @@ export const ChatAppProvider = ({children}) => {
         }
     };
 
-    const addFriends = async() => {
+    const addFriends = async({name, accountAddress}) => {
         try{
             if (name || accountAddress) return setError("Please provide all details.");
 
             const contract = await connectingWithContract();
-            const addMyFriend = await contract.addFriends(accountAddress, name);
+            const addMyFriend = await contract.addFriend(accountAddress, name);
             setLoading(true);
             await addMyFriend.wait();
             setLoading(false);
@@ -102,7 +99,7 @@ export const ChatAppProvider = ({children}) => {
 
     const sendMessage = async({msg, address}) => {
         try {
-            if (msg || address) return DynamicServerError("Please type your message.");
+            if (msg || address) return setError("Please type your message.");
 
             const contract = await connectingWithContract();
             const addMessage = await contract.sendMessage(address, msg);
