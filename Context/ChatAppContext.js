@@ -68,15 +68,19 @@ export const ChatAppProvider = ({children}) => {
         try {
             //if (name || accountAddress) return setError("Name and account cannot be empty.");
 
+            console.log("1");
             const contract = await connectingWithContract();
+            console.log("2");
             const getCreatedUser = await contract.createAccount(name);
+            console.log("3");
             setLoading(true);
             await getCreatedUser.wait();
+            console.log("4");
             setLoading(false);
             window.location.reload();
         }
         catch (error) {
-            setError("Error while creating your account. Please reload your browser.");
+            setError("Error while creating your account. Please reload your browser.", error);
         }
     };
 
