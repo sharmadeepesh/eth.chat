@@ -27,7 +27,7 @@ The output will return 20 test accounts and their wallet address, we'll come bac
 ```npx hardhat run scripts/deploy.js --network localhost```
 6. Note down the returned contract address. Open the /Context/constants.js file, and assign the returned contract address value to the ChatAppAddress variable. \
 ```export const ChatAppAddress = "Paste the address here"```
-7. This will generate a new ChatApp.json file in the /artifacts/contracts/ChatApp.sol/ directory. Move the ChatApp.json file to the /Context/ folder (the same directory in which you modified the ChatAppContext.js file in the previous step).
+7. This will generate a new ChatApp.json file in the /artifacts/contracts/ChatApp.sol/ directory. Move the ChatApp.json file to the /Context/ folder (the same directory in which you modified the constants.js file in the previous step).
 8. Next, start the development environment by running:
 ```npm run dev```
 9. The web app will run on localhost:3000.
