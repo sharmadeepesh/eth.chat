@@ -19,18 +19,6 @@ const NavBar = () => {
             menu: "Chat",
             link: "/",
         },
-        {
-            menu: "Contact",
-            link: "/",
-        },
-        {
-            menu: "Settings",
-            link: "/",
-        },
-        {
-            menu: "FAQs",
-            link: "/",
-        },
     ]
 
     const [active, setActive] = useState(2);
@@ -43,7 +31,7 @@ const NavBar = () => {
         <div className={Style.NavBar}>
             <div className={Style.NavBar_box}>
                 <div className={Style.NavBar_box_left}>
-                    <Image src={images.logo} alt="logo" width={50} height={50}></Image>
+                    <h2>ChatApp | </h2>
                 </div>
                 <div className={Style.NavBar_box_right}>
 

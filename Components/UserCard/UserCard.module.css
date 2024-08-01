@@ -16,7 +16,7 @@
 
 .UserCard_box_info button {
     background-color: rgba(0, 0, 0, 0.25);
-    color: #f18303;
+    color: #FE5F55;
     width: 50%;
     padding: 1rem;
     border: none;
@@ -30,6 +30,6 @@
      right: 1rem;
      padding: 1rem 1.3rem;
      border-radius: 50%;
-     background-color: #f18303;
+     background-color: #FE5F55;
      top: 1rem;
 }

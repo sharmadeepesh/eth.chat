@@ -4,8 +4,8 @@ html, body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #292f3f;
-  color: white;
+  background-color: #FFFFFF;
+  color: black;
 }
 
 ::-webkit-scrollbar {
@@ -23,10 +23,10 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
   body {
-    color:white;
-    background: #292f3f;
+    color:black;
+    background: #FFFFFF;
   }
 }

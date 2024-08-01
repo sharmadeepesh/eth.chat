@@ -30,7 +30,7 @@ const Filter = () => {
                     </button>
 
                     <button onClick={() => setAddFriend(true)}>
-                        <Image src={images.clear}
+                        <Image src={images.user}
                         alt="clear"
                         width={20} height={20} />
                         Add Friend

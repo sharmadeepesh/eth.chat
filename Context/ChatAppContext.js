@@ -45,7 +45,8 @@ export const ChatAppProvider = ({children}) => {
 
         }
         catch (error) {
-            setError("Please install and connect your wallet: ", error);
+            //setError("Please install and connect your wallet: ", error);
+        console.log(error);
         }
     };
 
@@ -60,7 +61,7 @@ export const ChatAppProvider = ({children}) => {
             setFriendMsg(read);
 
         } catch (error) {
-            setError("Currently you have no message")
+            //setError("Currently you have no message")
         }
     };
 
@@ -68,14 +69,13 @@ export const ChatAppProvider = ({children}) => {
         try {
             //if (name || accountAddress) return setError("Name and account cannot be empty.");
 
-            console.log("1");
             const contract = await connectingWithContract();
-            console.log("2");
+            
             const getCreatedUser = await contract.createAccount(name);
-            console.log("3");
+            
             setLoading(true);
             await getCreatedUser.wait();
-            console.log("4");
+            
             setLoading(false);
             window.location.reload();
         }
@@ -86,7 +86,7 @@ export const ChatAppProvider = ({children}) => {
 
     const addFriends = async({name, accountAddress}) => {
         try{
-            if (name || accountAddress) return setError("Please provide all details.");
+            if (!name || !accountAddress) return setError("Please provide all details.");
 
             const contract = await connectingWithContract();
             const addMyFriend = await contract.addFriend(accountAddress, name);
@@ -103,7 +103,7 @@ export const ChatAppProvider = ({children}) => {
 
     const sendMessage = async({msg, address}) => {
         try {
-            if (msg || address) return setError("Please type your message.");
+            //if (msg || address) return setError("Please type your message.");
 
             const contract = await connectingWithContract();
             const addMessage = await contract.sendMessage(address, msg);
