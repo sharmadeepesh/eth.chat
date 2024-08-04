@@ -6,11 +6,11 @@ import { ChatAppContext } from "@/Context/ChatAppContext";
 
 const alluser = () => {
 
-    const {userLists, addFriends } = useContext(ChatAppContext);
+    const { userLists, addFriends } = useContext(ChatAppContext);
     return (
         <div>
             <div className={Style.alluser_info}>
-                <h1>Find Your Friends</h1>
+                <h3>Find Your Friends</h3>
             </div>
 
             <div className={Style.alluser}>

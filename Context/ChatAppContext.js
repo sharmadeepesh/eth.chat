@@ -118,6 +118,7 @@ export const ChatAppProvider = ({children}) => {
     };
 
     const readUser = async(userAddress) => {
+        
         const contract = await connectingWithContract();
         const userName = await contract.getUsername(userAddress);
         setCurrentUsername(userName);
