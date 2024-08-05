@@ -53,7 +53,7 @@ The project is structured like any other React or Next.js app. The following dir
 
 1. **artifacts/** (Stores compiled outputs like the ABI for the contract and other generated artifacts from the build process)
 2. **assets/** (Contains static files like images, fonts, and other media assets used in the project)
-3. Components (Houses reusable UI components used across different parts of the application)
+3. **Components/** (Houses reusable UI components used across different parts of the application)
 4. **Context/** (Contains the copied contract ABI, a file for storing constant variables, and functions to interact with the deployed smart contract)
 5. **contracts/** (Includes smart contracts and other blockchain-related configurations and data)
 6. **pages/** (Contains the Next.js pages which correspond to different routes of the application)
