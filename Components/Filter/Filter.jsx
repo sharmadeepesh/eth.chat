@@ -1,3 +1,6 @@
+// Filter.jsx - A React component to filter the list of usernames (non functional ATM; IGNORE)
+// - Deepesh Sharma
+
 import React, { useState, useContext } from 'react';
 import Image from "next/image";
 
@@ -5,7 +8,6 @@ import Style from './Filter.module.css';
 import images from '../../assets';
 import {ChatAppContext} from '../../Context/ChatAppContext';
 import {Model } from '../index';
-import ChatApp from '@/pages';
 
 const Filter = () => {
     const { account, addFriends } = useContext(ChatAppContext);

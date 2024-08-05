@@ -1,3 +1,6 @@
+// modal.js - Component for displaying the modal window (containing registration form)
+// - Deepesh Sharma
+
 import React, {useState, useContext} from 'react'
 import Image from "next/image";
 
@@ -5,21 +8,28 @@ import Style from "./Model.module.css";
 import images from "../../assets";
 import { ChatAppContext } from '../../Context/ChatAppContext';
 import {Loader} from "../../Components/index";
-import ChatApp from '../../pages';
 
+// the functional component for the modal
 const Model = ( {openBox, title, head, info, smallInfo, image, functionName, address}) => {
     
+    // declaring the state variables for the name and address, used for registration
     const [name, setName] = useState("");
     const [accountAddress, setAccountAddress] = useState("");
 
+    // used for display the loading throbber
     const { loading } = useContext(ChatAppContext);
     
     return (
         <div className={Style.Model}>
             <div className={Style.Model_box}>
+
+                {/* display the hero image on the left side */}
                 <div className={Style.Model_box_left}>
                     <Image src={image} alt="buddy" width={700} height={700} />
                 </div>
+
+                {/* Some headings, app name, and the registration form on the right side 
+                Most of the JSX is rendering the form, so almost self explanatory.*/}
                 <div className={Style.Model_box_right}>
                     <h1>
                         {title} <span>{head}</span>
