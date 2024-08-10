@@ -1,5 +1,5 @@
 # A Decentralized Peer-to-Peer Messaging System on the Ethereum Blockchain
-Eth.chat is a decentralized messaging application built on top of the Ethereum blockchain. It leverages Solidity smart contracts for message storage and retrieval, ensuring users can send and receive messages directly through the application without the need of any centralized web server.
+Eth.chat is a decentralized messaging application built on top of the Ethereum blockchain. It leverages Solidity smart contracts for message storage and retrieval, ensuring users can send and receive messages directly through the application without the need for any centralized web server.
 
 ## Technologies Used
 1. Ethereum
@@ -43,8 +43,30 @@ The output will return 20 test accounts and their wallet address, we'll come bac
 8. The page will reload and you'll notice that the **Create Account** button in the top-right corner now displays your name.
 
 To test the messaging features, you need to create a second account.
-1. Click on MetaMask, and switch to a different account by selecting it from the list and clicking **Connect**. You'll need to perform steps 5 and 6 again to create a second account. 
+1. Click on MetaMask, switch to a different account by selecting it from the list and clicking **Connect**. You must perform steps 5 and 6 again to create a second account. 
 2. Now, go to the **All Users** screen and you'll notice that the two users will be listed. Click on **Add Friends** to add the other user as a friend. Click **Confirm** on the transaction window to confirm the action.
 
-Switch to the **Chat** section, select the user from the list, and send a message. Again, the transaction confirmation window will pop up; click **Confirm** to send the message. The page will automatically reload and you'll see the message appear in the conversation window. You can even log into the other account and check that the message was delivered successfully.
+Switch to the **Chat** section, select the user from the list, and send a message. Again, the transaction confirmation window will pop up; click **Confirm** to send the message. The page will automatically reload and the message appears in the conversation window. You can even log into the other account and check that the message was delivered successfully.
+
+## Project Structure
+The project is structured like any other React or Next.js app. The following directories are of most importance:
+
+1. **artifacts/** (Stores compiled outputs like the ABI for the contract and other generated artifacts from the build process)
+2. **assets/** (Contains static files like images, fonts, and other media assets used in the project)
+3. **Components/** (Houses reusable UI components used across different parts of the application)
+4. **Context/** (Contains the copied contract ABI, a file for storing constant variables, and functions to interact with the deployed smart contract)
+5. **contracts/** (Includes smart contracts and other blockchain-related configurations and data)
+6. **pages/** (Contains the Next.js pages which correspond to different routes of the application)
+7. **scripts/** (Holds utility scripts for automating contract deployment on the blockchain)
+8. **styles/** (Includes global styles, CSS, SCSS, and styled components for theming and design)
+9. **Utils/** (Includes functions and modules to connect the smart contract with the off-chain backend)
+
+The Components directory further contains sub-directories that hold other components:
+1. **Error** (React component to display errors in a user-friendly way)
+2. **Filter** (A React component to filter the list of usernames)
+3. **Friend** (The parent component to display the conversation window, the list of friends, and other Friend details.)  -----> Has two child components, **Card** and **Chat**.
+4. **Loader** (The component for displaying the loading throbber)
+5. **Modal** (Component for displaying the modal window (containing registration form))
+6. **NavBar** (Renders the navigation menu sitewide)
+7. **UserCard** (JSX for rendering the UserCard in the "Find Your Friends" page)
     
