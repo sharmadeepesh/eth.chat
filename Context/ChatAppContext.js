@@ -95,9 +95,6 @@ export const ChatAppProvider = ({children}) => {
         }
     };
 
-    const decryptMsg = async({msg}) => {
-        return await CryptoJS.AES.decrypt(msg, encKey).toString(CryptoJS.enc.Utf8);
-    }
     // Create an account by connecting with the contract, and calling the createAccount function.
     // Wait for the method to complete then reload the page.
     const createAccount = async({ name, accountAddress, encKey }) => {
@@ -150,14 +147,10 @@ export const ChatAppProvider = ({children}) => {
             setEncKey(contract.getEncKey(address));
             const encMsg = CryptoJS.AES.encrypt(msg, encKey).toString();
 
-            console.log("The encrypted message is, ", encMsg);
-
             const addMessage = await contract.sendMessage(address, encMsg);
 
             setLoading(true);
             await addMessage.wait();
-
-            console.log("The encrypted message after contract function called is, ", encMsg);
 
             setLoading(false);
             window.location.reload();
