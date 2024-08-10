@@ -10,7 +10,7 @@ import { ChatAppContext } from '../../Context/ChatAppContext';
 import {Loader} from "../../Components/index";
 
 // the functional component for the modal
-const Model = ( {openBox, title, head, info, smallInfo, image, functionName, address}) => {
+const Model = ( {openBox, title, head, info, smallInfo, image, functionName, address, isAddFriend}) => {
     
     // declaring the state variables for the name and address, used for registration
     const [name, setName] = useState("");
@@ -45,18 +45,21 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                             <div className={Style.Model_box_right_name}>
                         <div className={Style.Model_box_right_name_info}>
                             <Image src={images.username} alt="user" width={30} height={30} />
-                            <input type="text" placeholder="your name" onChange={(e) => setName(e.target.value)} />
+                            <input type="text" placeholder="Enter the username" onChange={(e) => setName(e.target.value)} />
                         </div>
 
                         <div className={Style.Model_box_right_name_info}>
                             <Image src={images.account} alt="account" width={30} height={30} />
-                            <input type="text" placeholder={address || "Enter address"} onChange={(e) => setAccountAddress(e.target.value)} />
+                            <input type="text" placeholder={address || "Enter the address"} onChange={(e) => setAccountAddress(e.target.value)} />
                         </div>
 
+                        { !isAddFriend && (
                         <div className={Style.Model_box_right_name_info}>
                             <Image src={images.account} alt="key" width={30} height={30} />
                             <input type="text" placeholder={"Enter an encryption key"} onChange={(e) => setEncKey(e.target.value)} />
                         </div>
+                        
+                        )};
 
                         <div className={Style.Model_box_right_name_btn}>
                             <button onClick={() => functionName({name, accountAddress, encKey})}>

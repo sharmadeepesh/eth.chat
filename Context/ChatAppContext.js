@@ -119,7 +119,7 @@ export const ChatAppProvider = ({children}) => {
     // Add two users as friends.
     // Check that the name and accountAddress are filled, then connect with contract,
     // call the addFriend function, await, then reload page when done.
-    const addFriends = async({name, accountAddress}) => {
+    const addFriends = async({name, accountAddress, encKey}) => {
         try{
             if (!name || !accountAddress) return setError("Please provide all details.");
 

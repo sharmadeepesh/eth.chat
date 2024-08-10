@@ -12,7 +12,7 @@ import {Model } from '../index';
 const Filter = () => {
     const { account, addFriends } = useContext(ChatAppContext);
 
-    const [addFriend, setAddFriend] = useState(false);
+    const [isAddFriend, setIsAddFriend] = useState(false);
 
     return (
         <div className={Style.Filter}>
@@ -31,7 +31,7 @@ const Filter = () => {
                         Clear Chat
                     </button>
 
-                    <button onClick={() => setAddFriend(true)}>
+                    <button onClick={() => setIsAddFriend(true)}>
                         <Image src={images.user}
                         alt="clear"
                         width={20} height={20} />
@@ -41,15 +41,16 @@ const Filter = () => {
                 </div>
             </div>
 
-            {addFriend && (
+            {isAddFriend && (
                 <div className={Style.Filter_model}>
-                    <Model openBox={setAddFriend}
+                    <Model openBox={setIsAddFriend}
                     title="Welcome to"
                     head="Eth.Chat"
-                    info="Random text hehe"
+                    info="Please enter your friend's username and account address to continue..."
                     smallInfo="Kindly select your friend name and address."
                     image={images.hero}
-                    functionName={addFriend}/>
+                    functionName={addFriends}
+                    isAddFriend={isAddFriend} />
                 </div>
             )}
         </div>

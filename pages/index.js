@@ -9,6 +9,7 @@ const ChatApp = () => {
 
   // Returns the Friend component, which contains the Card and Chat subcomponent
   return <div>
+    <Filter/>
     <Friend/>
   </div>;
 };
