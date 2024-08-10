@@ -119,7 +119,7 @@ const NavBar = () => {
                     <Model openBox={setOpenModel}
                         title = "Welcome to"
                         head="Eth.Chat"
-                        info="Random text hehe"
+                        info="Create an account by specifying your user name and an encryption key, which will be used for end-to-end encryption of messages."
                         smallInfo="Kindly select your name..."
                         image = {images.hero}
                         functionName = {createAccount}

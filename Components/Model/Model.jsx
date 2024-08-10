@@ -15,6 +15,7 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
     // declaring the state variables for the name and address, used for registration
     const [name, setName] = useState("");
     const [accountAddress, setAccountAddress] = useState("");
+    const [encKey, setEncKey] = useState("");
 
     // used for display the loading throbber
     const { loading } = useContext(ChatAppContext);
@@ -52,8 +53,13 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                             <input type="text" placeholder={address || "Enter address"} onChange={(e) => setAccountAddress(e.target.value)} />
                         </div>
 
+                        <div className={Style.Model_box_right_name_info}>
+                            <Image src={images.account} alt="key" width={30} height={30} />
+                            <input type="text" placeholder={"Enter an encryption key"} onChange={(e) => setEncKey(e.target.value)} />
+                        </div>
+
                         <div className={Style.Model_box_right_name_btn}>
-                            <button onClick={() => functionName({name, accountAddress})}>
+                            <button onClick={() => functionName({name, accountAddress, encKey})}>
                                 {""}
                                 <Image src={images.send} alt="send" width= {30} height={30}/>
                                 {""}

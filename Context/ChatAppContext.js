@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
+import CryptoJS from 'crypto-js';
 
 // Import the contract methods from apiFeature.js
 import { checkIfWalletConnected, connectWallet, connectingWithContract } from "../Utils/apiFeature";
@@ -16,6 +17,7 @@ export const ChatAppProvider = ({children}) => {
     
     const [account, setAccount] = useState("");
     const [userName, setUserName] = useState("");
+    const [encKey, setEncKey] = useState("");
     const [friendLists, setFriendLists] = useState([]);
     const [friendMsg, setFriendMsg] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -24,6 +26,8 @@ export const ChatAppProvider = ({children}) => {
 
     const [currentUserName, setCurrentUsername] = useState("");
     const [currentUserAddress, setCurrentUserAddress] = useState("");
+    const [currentEncKey, setCurrentEncKey] = useState("");
+    const [decMsg, setDecMsg] = useState([]);
 
     const router = useRouter();
 
@@ -69,24 +73,40 @@ export const ChatAppProvider = ({children}) => {
     // Connect with the contract and get the message array for the current conversation.
     const readMessage = async(friendAddress) => {
         try {
+
             const contract = await connectingWithContract();
-            const read = await contract.readMessage(friendAddress);
+
+            setCurrentEncKey(contract.getEncKey(friendAddress));
+
+            
+            let read = await contract.readMessage(friendAddress);
+            
+            let decMsg = [];
+
+            read.map((item) => {
+                decMsg.push(CryptoJS.AES.decrypt(item.msg, encKey).toString(CryptoJS.enc.Utf8));
+            });
+
             setFriendMsg(read);
+            setDecMsg(decMsg);
 
         } catch (error) {
             //setError("Currently you have no message")
         }
     };
 
+    const decryptMsg = async({msg}) => {
+        return await CryptoJS.AES.decrypt(msg, encKey).toString(CryptoJS.enc.Utf8);
+    }
     // Create an account by connecting with the contract, and calling the createAccount function.
     // Wait for the method to complete then reload the page.
-    const createAccount = async({ name, accountAddress }) => {
+    const createAccount = async({ name, accountAddress, encKey }) => {
         try {
             //if (name || accountAddress) return setError("Name and account cannot be empty.");
 
             const contract = await connectingWithContract();
             
-            const getCreatedUser = await contract.createAccount(name);
+            const getCreatedUser = await contract.createAccount(name, encKey);
             
             setLoading(true);
             await getCreatedUser.wait();
@@ -126,13 +146,24 @@ export const ChatAppProvider = ({children}) => {
             //if (msg || address) return setError("Please type your message.");
 
             const contract = await connectingWithContract();
-            const addMessage = await contract.sendMessage(address, msg);
+
+            setEncKey(contract.getEncKey(address));
+            const encMsg = CryptoJS.AES.encrypt(msg, encKey).toString();
+
+            console.log("The encrypted message is, ", encMsg);
+
+            const addMessage = await contract.sendMessage(address, encMsg);
+
             setLoading(true);
             await addMessage.wait();
+
+            console.log("The encrypted message after contract function called is, ", encMsg);
+
             setLoading(false);
             window.location.reload();
 
         } catch(error) {
+            console.log(error);
             setError("Please reload and try again.");
         }
     };
@@ -153,7 +184,7 @@ export const ChatAppProvider = ({children}) => {
             addFriends, sendMessage, readUser, checkIfWalletConnected,
             connectWallet,
             account, userName, friendLists, friendMsg,
-            loading, userLists, error, currentUserName, currentUserAddress
+            loading, userLists, error, currentUserName, currentUserAddress, encKey, decMsg, currentEncKey
          }}>
             { children }
         </ChatAppContext.Provider>

@@ -8,6 +8,7 @@ contract ChatApp {
     // The User structure contains a name and the list of friends.
     struct user{
         string name;
+        string enckey;
         friend[] friendList;
     }
 
@@ -47,11 +48,12 @@ contract ChatApp {
     // Check if a user exists, require a user name
     // Add the specified user name to the userList mapping with the account address 
     // and push the data to the AllUserStruct
-    function createAccount(string calldata name) external {
+    function createAccount(string calldata name, string calldata enckey) external {
         require(checkUserExists(msg.sender) == false, "User already exists");
         require(bytes(name).length > 0, "Username can't be empty");
 
         userList[msg.sender].name = name;
+        userList[msg.sender].enckey = enckey;
 
         getAllUsers.push(AllUserStruct(name, msg.sender));
     }
@@ -148,6 +150,10 @@ contract ChatApp {
     // Returns the list of all users registered on the system.
     function getAllAppUser() public view returns(AllUserStruct[] memory) {
         return getAllUsers;
+    }
+
+    function getEncKey(address user) external view returns(string memory) {
+        return userList[user].enckey;
     }
 
 }

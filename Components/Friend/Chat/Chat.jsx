@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 
+import CryptoJS from "crypto-js";
+
 // Import the required CSS, media, and Loader function
 import Style from "./Chat.module.css";
 import images from '../../../assets';
@@ -12,13 +14,14 @@ import { converTime } from "../../../Utils/apiFeature";
 import {Loader} from "../../index";
 
 // Create a Chat component and defined the props it takes
-const Chat = ( {functionName, readMessage, friendMsg, account, userName, loading, currentUserName, currentUserAddress, readUser }) => {
+const Chat = ( {functionName, readMessage, friendMsg, account, decMsg, userName, loading, currentUserName, currentUserAddress, readUser }) => {
     
     // Declare the state variables that contain the user data (chatData) and message.
     const [message, setMessage] = useState('');
     const [chatData, setChatData] = useState ({
         name: "",
         address: "",
+        encKey: "",
     });
 
     const router = useRouter();
@@ -41,7 +44,6 @@ const Chat = ( {functionName, readMessage, friendMsg, account, userName, loading
             readUser(router.query.address);
         }
     }, []);
-    
 
     return (
         <div className={Style.Chat}>
@@ -86,6 +88,8 @@ const Chat = ( {functionName, readMessage, friendMsg, account, userName, loading
                                                 <span>{chatData.name} {""} 
                                                     {/* <small>Time: {converTime(el.timestamp)}</small> */}
                                                 </span>
+
+                                                
                                             </div>
                                         ) :
                                         (
@@ -100,14 +104,19 @@ const Chat = ( {functionName, readMessage, friendMsg, account, userName, loading
                                                 <span>{userName} {""} 
                                                     {/* <small>Time: {converTime(el.timestamp)}</small> */}
                                                 </span>
+
+                    
+
                                             </div>
                                         )}
 
+                                        
                                         {/* add dynamic spacing after every message so they're rendered properly  */}
-                                        <p key={i + 1}>{el.msg}
-                                            {""}
-                                            {""}
-                                        </p>
+                                        <p key={i + 1}>{decMsg[i]} 
+                                                    {""}
+                                                    {""}
+                                            </p>
+
                                     </div>
                                 ))}
                         </div>

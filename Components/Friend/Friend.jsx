@@ -17,7 +17,7 @@ import { ChatAppContext } from '@/Context/ChatAppContext';
 const Friend = () => {
 
     // Use the listed functions and data variables from the imported context
-    const { sendMessage, account, friendLists, friendMsg, readMessage, userName, loading, currentUserName, currentUserAddress, readUser } = useContext(ChatAppContext);
+    const { sendMessage, account, friendLists, friendMsg, readMessage, userName, decMsg, encKey, currentEncKey, loading, currentUserName, currentUserAddress, readUser } = useContext(ChatAppContext);
 
     return (
         <div className={Style.Friend}>
@@ -45,12 +45,15 @@ const Friend = () => {
                     <Chat functionName = {sendMessage}
                     readMessage = {readMessage}
                     friendMsg = { friendMsg}
+                    encKey = { encKey }
+                    currentEncKey = { currentEncKey } 
                     account = { account }
                     userName = { userName }
                     loading = { loading }
                     currentUserAddress = { currentUserAddress}
                     currentUserName = { currentUserName }
-                    readUser={ readUser } />
+                    readUser={ readUser } 
+                    decMsg = { decMsg } />
                 </div>
             </div>
         </div>
