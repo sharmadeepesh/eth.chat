@@ -38,7 +38,7 @@ const NavBar = () => {
 
                 {/* Display the main logo of the webpage. Currently set to heading2 */}
                 <div className={Style.NavBar_box_left}>
-                    <h2>ChatApp | </h2>
+                    <h2>Eth.Chat</h2>
                 </div>
                 <div className={Style.NavBar_box_right}>
 

@@ -3,14 +3,14 @@
     background-color: #FBFEFB;
     border-radius: .5rem;
     overflow-y: scroll;
-    box-shadow: 0px 1px 10px lightgray;
-    height: 86vh;
+    box-shadow: 0px 0px 0px 1px black;
+    height: 85vh;
 }
 
 .Chat_box {
     display:grid;
     grid-template-columns: 1fr;
-    height: 63vh;
+    height: 62vh;
     width: 80%;
     margin: 0 auto;
     overflow-y: scroll;
@@ -18,8 +18,10 @@
 
 .Chat_box_right p, 
 .Chat_box_left p {
-    background-color: #68A691;
-    color: white;
+    background-color: lightsalmon;
+    margin: 10px;
+    color: black;
+    box-shadow: 0px 0px 0px 1px black;
     padding: 1rem;
     border-top-right-radius: .5rem;
     border-top-left-radius: .5rem;
@@ -46,9 +48,9 @@
     outline: none;
     border: none;
     padding: 1rem;
-    color: lightgrey;
+    color: black;
     border-radius: 0.5rem;
-    box-shadow: 0px 0px 4px 0px;
+    box-shadow: 0px 0px 0px 1px black;
 }
 
 .Chat_user_info {

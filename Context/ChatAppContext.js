@@ -78,7 +78,6 @@ export const ChatAppProvider = ({children}) => {
 
             setCurrentEncKey(contract.getEncKey(friendAddress));
 
-            
             let read = await contract.readMessage(friendAddress);
             
             let decMsg = [];
@@ -99,7 +98,7 @@ export const ChatAppProvider = ({children}) => {
     // Wait for the method to complete then reload the page.
     const createAccount = async({ name, accountAddress, encKey }) => {
         try {
-            //if (name || accountAddress) return setError("Name and account cannot be empty.");
+            // if (!name || !accountAddress || !encKey) return setError("Name, account, and encryption key fields cannot be empty.");
 
             const contract = await connectingWithContract();
             

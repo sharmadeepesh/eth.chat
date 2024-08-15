@@ -26,7 +26,7 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
 
                 {/* display the hero image on the left side */}
                 <div className={Style.Model_box_left}>
-                    <Image src={image} alt="buddy" width={700} height={700} />
+                    <Image src={images.accountName} alt="buddy" width={700} height={700} />
                 </div>
 
                 {/* Some headings, app name, and the registration form on the right side 
@@ -56,10 +56,10 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                         { !isAddFriend && (
                         <div className={Style.Model_box_right_name_info}>
                             <Image src={images.account} alt="key" width={30} height={30} />
-                            <input type="text" placeholder={"Enter an encryption key"} onChange={(e) => setEncKey(e.target.value)} />
+                            <input type="password" placeholder={"Enter an encryption key"} onChange={(e) => setEncKey(e.target.value)} />
                         </div>
                         
-                        )};
+                        )}
 
                         <div className={Style.Model_box_right_name_btn}>
                             <button onClick={() => functionName({name, accountAddress, encKey})}>
@@ -83,7 +83,7 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
                 </div>
             </div>
         </div>
-    );
-;}
+    )
+}
 
 export default Model

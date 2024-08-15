@@ -44,11 +44,9 @@ const Filter = () => {
             {isAddFriend && (
                 <div className={Style.Filter_model}>
                     <Model openBox={setIsAddFriend}
-                    title="Welcome to"
-                    head="Eth.Chat"
+                    title="Add New Friends"
                     info="Please enter your friend's username and account address to continue..."
-                    smallInfo="Kindly select your friend name and address."
-                    image={images.hero}
+                    image={images.buddy}
                     functionName={addFriends}
                     isAddFriend={isAddFriend} />
                 </div>
