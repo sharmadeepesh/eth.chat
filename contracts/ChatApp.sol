@@ -153,8 +153,8 @@ contract ChatApp {
         return getAllUsers;
     }
 
-    function getEncKey(address user) external view returns(string memory) {
-        return userList[user].enckey;
+    function getEncKey(address user_addr) external view returns(string memory) {
+        return userList[user_addr].enckey;
     }
 
 }
