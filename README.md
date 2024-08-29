@@ -1,4 +1,4 @@
-# A Decentralized Peer-to-Peer Messaging System on the Ethereum Blockchain
+# A Secure Peer-to-Peer Messaging System on the Ethereum Blockchain
 Eth.chat is a decentralized messaging application built on top of the Ethereum blockchain. It leverages Solidity smart contracts for message storage and retrieval, ensuring users can send and receive messages directly through the application without the need for any centralized web server.
 
 ## Technologies Used
