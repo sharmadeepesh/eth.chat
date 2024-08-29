@@ -19,9 +19,9 @@ const UserCard = ( { el, i, addFriends } ) => {
 
                 {/* Displays the user card with the user name and address and an Add Friend button */}
                 <div className={Style.UserCard_box_info}>
-                    <h3>{el.name}</h3>
+                    <h3>{el.username}</h3>
                     <p>{el.accountAddress.slice(0,25)}</p>
-                    <button onClick={() => addFriends({name: el.name, accountAddress: el.accountAddress})}>Add Friend</button>
+                    <button onClick={() => addFriends({name: el.username, accountAddress: el.accountAddress})}>Add Friend</button>
                 </div>
             </div>
 

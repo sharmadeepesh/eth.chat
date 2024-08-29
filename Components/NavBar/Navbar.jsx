@@ -15,7 +15,7 @@ import images from "../../assets";
 const NavBar = () => {
     const menuItems = [
         {
-            menu: "All Users",
+            menu: "Find Friends",
             link: "/alluser",
         },
         {
@@ -119,9 +119,9 @@ const NavBar = () => {
                     <Model openBox={setOpenModel}
                         title = "Welcome to"
                         head="Eth.Chat"
-                        info="Create an account by specifying your user name and an encryption key, which will be used for end-to-end encryption of messages."
-                        smallInfo="Kindly select your name..."
-                        image = {images.hero}
+                        info=""
+                        smallInfo=""
+                        image = {images.hero1}
                         functionName = {createAccount}
                         address = {account} />
                 </div>

@@ -1,4 +1,4 @@
-# A Secure Peer-to-Peer Messaging System on the Ethereum Blockchain
+# A Decentralized Peer-to-Peer Messaging System on the Ethereum Blockchain
 Eth.chat is a decentralized messaging application built on top of the Ethereum blockchain. It leverages Solidity smart contracts for message storage and retrieval, ensuring users can send and receive messages directly through the application without the need for any centralized web server.
 
 ## Technologies Used
@@ -8,7 +8,6 @@ Eth.chat is a decentralized messaging application built on top of the Ethereum b
 4. React
 5. Next.js
 6. ethers.js
-7. Crypto.js
 
 ## Prerequisites for Installation
 Make sure that you have the following software installed:
@@ -25,12 +24,13 @@ Make sure that you have the following software installed:
 ```npx hardhat node``` \
 The output will return 20 test accounts and their wallet address, we'll come back to this in later steps.
 5. Then, deploy the ChatApp.sol smart contract on the local chain with: \
-```npx hardhat run scripts/deploy.cjs --network localhost```
+```npx hardhat run scripts/deploy.js --network localhost```
 6. Note down the returned contract address. Open the /Context/constants.js file, and assign the returned contract address value to the ChatAppAddress variable. \
-```export const ChatAppAddress = "PASTE THE ADDRESS HERE"```
-7. Next, start the development environment by running:
+```export const ChatAppAddress = "Paste the address here"```
+7. This will generate a new ChatApp.json file in the /artifacts/contracts/ChatApp.sol/ directory. Move the ChatApp.json file to the /Context/ folder (the same directory in which you modified the constants.js file in the previous step).
+8. Next, start the development environment by running:
 ```npm run dev```
-8. The web app will run on localhost:3000.
+9. The web app will run on localhost:3000.
 
 ## Usage
 1. You'll need to install and set up a MetaMask wallet to use the web app. https://www.techopedia.com/how-to/how-to-set-up-a-metamask-wallet
@@ -47,10 +47,6 @@ To test the messaging features, you need to create a second account.
 2. Now, go to the **All Users** screen and you'll notice that the two users will be listed. Click on **Add Friends** to add the other user as a friend. Click **Confirm** on the transaction window to confirm the action.
 
 Switch to the **Chat** section, select the user from the list, and send a message. Again, the transaction confirmation window will pop up; click **Confirm** to send the message. The page will automatically reload and the message appears in the conversation window. You can even log into the other account and check that the message was delivered successfully.
-
-## Run the Test Scripts
-To run the unit tests defined in the /test/ChatApp.js file, run the following command:
-```npx hardhat test```
 
 ## Project Structure
 The project is structured like any other React or Next.js app. The following directories are of most importance:

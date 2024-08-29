@@ -26,7 +26,7 @@ const Model = ( {openBox, title, head, info, smallInfo, image, functionName, add
 
                 {/* display the hero image on the left side */}
                 <div className={Style.Model_box_left}>
-                    <Image src={images.accountName} alt="buddy" width={700} height={700} />
+                    <Image src={images.hero1} alt="buddy" width={700} height={700} />
                 </div>
 
                 {/* Some headings, app name, and the registration form on the right side 

@@ -7,7 +7,7 @@ import Web3Modal from "web3modal";
 import { ChatAppAddress, ChatAppABI } from '../Context/constants';
 
 // Check if the Metamask wallet is connected with the website
-export const checkIfWalletConnected = async () => {
+export const checkIfMetaMaskConnected = async () => {
     try {
 
         // Metamask injects a browser API at window.ethereum, so this is checking if
@@ -29,7 +29,7 @@ export const checkIfWalletConnected = async () => {
 };
 
 // Connecting the Metamask wallet with the website (similar to checkIfWalletConnected())
-export const connectWallet = async () => {
+export const connectMetaMaskWallet = async () => {
     try {
 
         // Check if Metamask is installed
@@ -52,10 +52,10 @@ export const connectWallet = async () => {
 // Create an instance of the Contract to use in connectingWithContract() later
 // Uses ChatAppAddress (the contract address on the blockchain) and ChatAppABI
 // (the ChatApp.json file acting as the ABI for the contract)
-const fetchContract = (signerOrProvider) => new ethers.Contract(ChatAppAddress, ChatAppABI, signerOrProvider);
+const fetchSmartContract = (signerOrProvider) => new ethers.Contract(ChatAppAddress, ChatAppABI, signerOrProvider);
 
 // Connect with and return the contract to be used in the off-chain backend
-export const connectingWithContract = async () => {
+export const connectingWithSmartContract = async () => {
     try {
 
         // Create a web3modal instance to create a connection and provider
@@ -67,7 +67,7 @@ export const connectingWithContract = async () => {
         const signer = provider.getSigner();
 
         // Create the contract using the signer as the argument
-        const contract = fetchContract(signer);
+        const contract = fetchSmartContract(signer);
 
         return contract;
     }
@@ -75,13 +75,4 @@ export const connectingWithContract = async () => {
     catch (error) {
         console.log(error);
     }
-};
-
-// Method to convert the time and date to a desired format (hh/mm/ss Date: dd/mm/yyyy)
-export const converTime = (time) => {
-    const newTime = new Date(time.toNumber());
-
-    const realTime = newTime.getHours() + "/" + newTime.getMinutes() + "/" + newTime.getSeconds() + " Date: " + newTime.getDate() + "/" + (newTime.getMonth() + 1) + "/" + newTime.getFullYear();
-
-    return realTime;
 };

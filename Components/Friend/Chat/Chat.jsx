@@ -10,7 +10,6 @@ import CryptoJS from "crypto-js";
 // Import the required CSS, media, and Loader function
 import Style from "./Chat.module.css";
 import images from '../../../assets';
-import { converTime } from "../../../Utils/apiFeature";
 import {Loader} from "../../index";
 
 // Create a Chat component and defined the props it takes
@@ -78,14 +77,14 @@ const Chat = ( {functionName, readMessage, friendMsg, account, decMsg, userName,
 
                                         {/* If the msg sender is the other user (i.e. friend), display
                                         their account name in the sender name field. */}
-                                        {el.sender == chatData.address ? (
+                                        {el.senderAddress == chatData.address ? (
                                             <div className={Style.Chat_box_left_title}>
                                                 <Image src={images.accountName}
                                                 alt="image"
                                                 width={50}
                                                 height={50} />
 
-                                                <span>{chatData.name} {""} 
+                                                <span>{chatData.username} {""} 
                                                     {/* <small>Time: {converTime(el.timestamp)}</small> */}
                                                 </span>
 
@@ -143,11 +142,13 @@ const Chat = ( {functionName, readMessage, friendMsg, account, decMsg, userName,
                                     loading == true ? (
                                         <Loader/>
                                     ) : (
+                                        
                                         <Image src={images.send}
                                         alt="file"
                                         width={50}
                                         height={50} 
                                         onClick={() => functionName({msg: message, address: chatData.address })}/>
+                                        
                                     )
                                 }
                             </div>    

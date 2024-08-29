@@ -44,9 +44,9 @@ const Filter = () => {
             {isAddFriend && (
                 <div className={Style.Filter_model}>
                     <Model openBox={setIsAddFriend}
-                    title="Add New Friends"
+                    title="Add a Friend"
                     info="Please enter your friend's username and account address to continue..."
-                    image={images.buddy}
+                    image={images.hero1}
                     functionName={addFriends}
                     isAddFriend={isAddFriend} />
                 </div>

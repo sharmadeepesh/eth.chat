@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import CryptoJS from 'crypto-js';
 
 // Import the contract methods from apiFeature.js
-import { checkIfWalletConnected, connectWallet, connectingWithContract } from "../Utils/apiFeature";
+import { checkIfMetaMaskConnected, connectMetaMaskWallet, connectingWithSmartContract } from "../Utils/apiFeature";
 
 // Create a context to store all the methods for later use
 export const ChatAppContext = React.createContext();
@@ -37,25 +37,25 @@ export const ChatAppProvider = ({children}) => {
         try {
 
             // Connecting with the contract
-            const contract = await connectingWithContract();
+            const contract = await connectingWithSmartContract();
 
             // Connect with the first account.
-            const connectAccount = await checkIfWalletConnected();
+            const connectAccount = await checkIfMetaMaskConnected();
             if (connectAccount === "") {
-                connectAccount = await connectWallet();
+                connectAccount = await connectMetaMaskWallet();
             }
 
 
             // Set the state variables.
             setAccount(connectAccount);
 
-            const userName = await contract.getUsername(connectAccount);
+            const userName = await contract.getSpecificUsername(connectAccount);
             setUserName(userName);
 
-            const friendLists = await contract.getMyFriendList();
+            const friendLists = await contract.getMyListOfFriends();
             setFriendLists(friendLists);
                
-            const userList = await contract.getAllAppUser();
+            const userList = await contract.getListOfAllAppUsers();
             setUserLists(userList);
 
         }
@@ -74,11 +74,11 @@ export const ChatAppProvider = ({children}) => {
     const readMessage = async(friendAddress) => {
         try {
 
-            const contract = await connectingWithContract();
+            const contract = await connectingWithSmartContract();
 
-            setCurrentEncKey(contract.getEncKey(friendAddress));
+            setCurrentEncKey(contract.getUsersEncryptionKey(friendAddress));
 
-            let read = await contract.readMessage(friendAddress);
+            let read = await contract.readMessagesInConversation(friendAddress);
             
             let decMsg = [];
 
@@ -100,9 +100,9 @@ export const ChatAppProvider = ({children}) => {
         try {
             // if (!name || !accountAddress || !encKey) return setError("Name, account, and encryption key fields cannot be empty.");
 
-            const contract = await connectingWithContract();
+            const contract = await connectingWithSmartContract();
             
-            const getCreatedUser = await contract.createAccount(name, encKey);
+            const getCreatedUser = await contract.createUserAccount(name, encKey);
             
             setLoading(true);
             await getCreatedUser.wait();
@@ -122,8 +122,8 @@ export const ChatAppProvider = ({children}) => {
         try{
             if (!name || !accountAddress) return setError("Please provide all details.");
 
-            const contract = await connectingWithContract();
-            const addMyFriend = await contract.addFriend(accountAddress, name);
+            const contract = await connectingWithSmartContract();
+            const addMyFriend = await contract.addUserAsFriend(accountAddress, name);
             setLoading(true);
             await addMyFriend.wait();
             setLoading(false);
@@ -141,9 +141,9 @@ export const ChatAppProvider = ({children}) => {
         try {
             //if (msg || address) return setError("Please type your message.");
 
-            const contract = await connectingWithContract();
+            const contract = await connectingWithSmartContract();
 
-            setEncKey(contract.getEncKey(address));
+            setEncKey(contract.getUsersEncryptionKey(address));
             const encMsg = CryptoJS.AES.encrypt(msg, encKey).toString();
 
             const addMessage = await contract.sendMessage(address, encMsg);
@@ -164,8 +164,8 @@ export const ChatAppProvider = ({children}) => {
     // Connect contract > getUsername and address > set state variables.
     const readUser = async(userAddress) => {
         
-        const contract = await connectingWithContract();
-        const userName = await contract.getUsername(userAddress);
+        const contract = await connectingWithSmartContract();
+        const userName = await contract.getSpecificUsername(userAddress);
         setCurrentUsername(userName);
         setCurrentUserAddress(userAddress);
     };
@@ -173,8 +173,8 @@ export const ChatAppProvider = ({children}) => {
     // Export all the methods and state variables for use in other files.
     return (
         <ChatAppContext.Provider value = {{ readMessage, createAccount,
-            addFriends, sendMessage, readUser, checkIfWalletConnected,
-            connectWallet,
+            addFriends, sendMessage, readUser, checkIfMetaMaskConnected,
+            connectMetaMaskWallet,
             account, userName, friendLists, friendMsg,
             loading, userLists, error, currentUserName, currentUserAddress, encKey, decMsg, currentEncKey
          }}>
