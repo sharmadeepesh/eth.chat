@@ -84,7 +84,7 @@ const Chat = ( {functionName, readMessage, friendMsg, account, decMsg, userName,
                                                 width={50}
                                                 height={50} />
 
-                                                <span>{chatData.username} {""} 
+                                                <span>{currentUserName} {""} 
                                                     {/* <small>Time: {converTime(el.timestamp)}</small> */}
                                                 </span>
 
